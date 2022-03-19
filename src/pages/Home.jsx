@@ -78,8 +78,8 @@ export function Home() {
               An <span className={classes.highlight}>easy</span> way to track<br /> your payments
             </Title>
             <Text color="dimmed" mt="md">
-				Create lists for bills or anything that you need to pay, and check them off when they are paid.
-				You can even set up recurring payments to reset monthly/weekly and check them off once they are paid again.
+              Create lists for bills or anything that you need to pay, and check them off when they are paid.
+              You can even set up recurring payments to reset monthly/weekly and check them off once they are paid again.
             </Text>
 
             <List

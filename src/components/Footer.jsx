@@ -35,24 +35,24 @@ export function Footer() {
     <div className={classes.footer}>
       <Container className={classes.inner}>
         <Group className={classes.links}>
-			<Anchor
-			color="dimmed"
-			key={null}
-			href={null}
-			onClick={(event) => event.preventDefault()}
-			size="sm"
-			>
-				About
-			</Anchor>
-			<Anchor
-			color="dimmed"
-			key={null}
-			href={null}
-			onClick={(event) => event.preventDefault()}
-			size="sm"
-			>
-				Source Code
-			</Anchor>
+          <Anchor
+          color="dimmed"
+          key={null}
+          href={null}
+          onClick={(event) => event.preventDefault()}
+          size="sm"
+          >
+          About
+          </Anchor>
+          <Anchor
+          color="dimmed"
+          key={null}
+          href={null}
+          onClick={(event) => event.preventDefault()}
+          size="sm"
+          >
+          Source Code
+          </Anchor>
 		</Group>
       </Container>
     </div>
