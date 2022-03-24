@@ -1,47 +1,55 @@
 import React, { useState } from 'react'
-import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
-import { useForm } from '@mantine/form';
+import { Button, Group, Box, Paper } from '@mantine/core';
+import FormRow from '../components/FormRow';
+
+const initialState = {
+  name: '',
+  email: '',
+  password: '',
+  isMember: true,
+}
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [values, setValues] = useState(initialState);
 
-  const register = (event) => {
-    event.preventDefault()
-    fetch(`http://localhost:3001/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username,
-        password
-      })
-    })
+  const handleChange = (e) => {
+    console.log(e.target)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(e.target)
   }
 
   return (
 	<>
-  <Box sx={{ maxWidth: 300 }} mx="auto">
+  <Box sx={{ maxWidth: 400 }} mx="auto">
+    <Paper radius="md" p="xl" withBorder>
     <h1>Register an account</h1>
-    <form onSubmit={register} >
-      <TextInput
-      required
-      label='Username'
-      placeholder='Create a username'
-      onChange={(event) => setUsername(event.target.value)}
+    <form onSubmit={handleSubmit}>
+      <FormRow 
+        type='text' 
+        name='name'
+        value={values.name}
+        handleChange={handleChange}
       />
-      <TextInput
-      required
-      type='password'
-      label='Create a password'
-      placeholder='Must be more than 8 characters'
-      onChange={(event) => setPassword(event.target.value)}
+      <FormRow 
+        type='email' 
+        name='email'
+        value={values.email}
+        handleChange={handleChange}
+      />
+      <FormRow 
+        type='password' 
+        name='password'
+        value={values.password}
+        handleChange={handleChange}
       />
       <Group position="right" mt="md">
         <Button type="submit">Create account</Button>
       </Group>
     </form>
+    </Paper>
   </Box>
   </>
   )

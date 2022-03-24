@@ -1,14 +1,17 @@
 import React from 'react'
 import { NavBar } from '../components/NavBar'
 import { Grid } from '@mantine/core';
-import { PaymentCard } from '../components/Card';
+import { Container } from '@mantine/core';
 
-const Dashboard = () => {
+const Profile = () => {
   return (
 	<>
 	<NavBar />
+	<Container>
+	<p>Welcome to your Profile</p>
+	</Container>
 	</>
   )
 }
 
-export default Dashboard
+export default Profile

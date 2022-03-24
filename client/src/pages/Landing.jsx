@@ -6,11 +6,7 @@ import {
   Button,
   Group,
   Text,
-  List,
-  ThemeIcon,
 } from '@mantine/core';
-import { Check } from 'tabler-icons-react';
-import image from './image.svg';
 import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
@@ -68,11 +64,14 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function Home() {
+export function Landing() {
   const { classes } = useStyles();
   return (
     <div>
       <Container>
+        <Title className={classes.title}>
+          DID YOU PAY IT?
+        </Title>
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
@@ -81,27 +80,6 @@ export function Home() {
             <Text color="dimmed" mt="md">
               Create lists for bills or anything that you need to pay, then check them off once they are paid.
             </Text>
-
-            <List
-              mt={30}
-              spacing="sm"
-              size="sm"
-              icon={
-                <ThemeIcon size={20} radius="xl">
-                  <Check size={12} />
-                </ThemeIcon>
-              }
-              >
-              <List.Item>
-                <b>FREE</b> – This is 100% free to use
-              </List.Item>
-              <List.Item>
-                <b>Dashboards</b> – You have your own dashboard to stay organized
-              </List.Item>
-              <List.Item>
-                <b>Simple & Easy</b> – Easy and quick registration process so you can start adding items
-              </List.Item>
-            </List>
 
             <Group mt={30}>
               <Button 
@@ -125,7 +103,7 @@ export function Home() {
               </Button>
             </Group>
           </div>
-          <Image src={image} className={classes.image} />
+          <Image src='favicon.ico' className={classes.image} />
         </div>
         </Container>
     </div>

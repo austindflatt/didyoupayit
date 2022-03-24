@@ -1,115 +1,140 @@
 import React, { useState } from 'react';
-import { createStyles, Navbar, Group, Code } from '@mantine/core';
-import {
-  Logout,
-  Home,
-  ReportMoney,
-  Checks,
-  UserCircle,
-} from 'tabler-icons-react';
-import { Link } from 'react-router-dom';
+import { createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
+import { useBooleanToggle } from '@mantine/hooks';
 
-const useStyles = createStyles((theme, _params, getRef) => {
-  const icon = getRef('icon');
-  return {
-    header: {
-      paddingBottom: theme.spacing.md,
-      marginBottom: theme.spacing.md * 1.5,
-      borderBottom: `1px solid ${
-        theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-      }`,
+const HEADER_HEIGHT = 60;
+
+const useStyles = createStyles((theme) => ({
+  root: {
+    position: 'relative',
+    zIndex: 1,
+  },
+
+  dropdown: {
+    position: 'absolute',
+    top: HEADER_HEIGHT,
+    left: 0,
+    right: 0,
+    zIndex: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopWidth: 0,
+    overflow: 'hidden',
+
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
+  },
+
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '100%',
+  },
+
+  links: {
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
+    },
+  },
+
+  burger: {
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
+  },
+
+  link: {
+    display: 'block',
+    lineHeight: 1,
+    padding: '8px 12px',
+    borderRadius: theme.radius.sm,
+    textDecoration: 'none',
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    fontSize: theme.fontSizes.sm,
+    fontWeight: 500,
+
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     },
 
-    footer: {
-      paddingTop: theme.spacing.md,
-      marginTop: theme.spacing.md,
-      borderTop: `1px solid ${
-        theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-      }`,
+    [theme.fn.smallerThan('sm')]: {
+      borderRadius: 0,
+      padding: theme.spacing.md,
     },
+  },
 
-    link: {
-      ...theme.fn.focusStyles(),
-      display: 'flex',
-      alignItems: 'center',
-      textDecoration: 'none',
-      fontSize: theme.fontSizes.sm,
-      color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
-      padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
-      borderRadius: theme.radius.sm,
-      fontWeight: 500,
-
-      '&:hover': {
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-        color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-
-        [`& .${icon}`]: {
-          color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-        },
-      },
+  linkActive: {
+    '&, &:hover': {
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
+          : theme.colors[theme.primaryColor][0],
+      color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 3 : 7],
     },
-
-    linkIcon: {
-      ref: icon,
-      color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
-      marginRight: theme.spacing.sm,
-    },
-
-    linkActive: {
-      '&, &:hover': {
-        backgroundColor:
-          theme.colorScheme === 'dark'
-            ? theme.fn.rgba(theme.colors[theme.primaryColor][8], 0.25)
-            : theme.colors[theme.primaryColor][0],
-        color: theme.colorScheme === 'dark' ? theme.white : theme.colors[theme.primaryColor][7],
-        [`& .${icon}`]: {
-          color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 5 : 7],
-        },
-      },
-    },
-  };
-});
-
-const data = [
-  { link: '/dashboard', label: 'Dashboard', icon: Home },
-  { link: '/add-payment', label: 'Add Payments', icon: ReportMoney },
-  { link: '/completed-payments', label: 'Completed Payments', icon: Checks },
-  { link: '/profile', label: 'Profile', icon: UserCircle },
-];
+  },
+}));
 
 export function NavBar() {
+  const [opened, toggleOpened] = useBooleanToggle(false);
   const { classes, cx } = useStyles();
-  const [active, setActive] = useState('Billing');
 
-  const links = data.map((item) => (
+  const items =
+  <>
     <a
-      className={cx(classes.link, { [classes.linkActive]: item.label === active })}
-      href={item.link}
-      key={item.label}
-	  component={Link}
-	  to={data.label}
-	//   setActive(item.label);
+      key={null}
+      href='/dashboard'
+      className={cx(classes.link)}
     >
-      <item.icon className={classes.linkIcon} />
-      <span>{item.label}</span>
+      Activity
     </a>
-  ));
+    <a
+      key={null}
+      href='/completed-payments'
+      className={cx(classes.link)}
+    >
+      Completed Payments
+    </a>
+    <a
+      key={null}
+      href='/add-payment'
+      className={cx(classes.link)}
+    >
+      Add  Payment
+    </a>
+    <a
+      key={null}
+      href='/profile'
+      className={cx(classes.link)}
+    >
+      Profile
+    </a>
+  </>;
 
   return (
-    <Navbar height={700} width={{ sm: 300 }} p="md">
-      <Navbar.Section grow>
-        <Group className={classes.header} position="apart">
-			Welcome Austin! 😁
+    <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
+      <Container className={classes.header}>
+        Welcome Austin
+        <Group spacing={5} className={classes.links}>
+          {items}
         </Group>
-        {links}
-      </Navbar.Section>
 
-      <Navbar.Section className={classes.footer}>
-        <a href='/' className={classes.link} onClick={(event) => event.preventDefault()}>
-          <Logout className={classes.linkIcon} />
-          <span>Logout</span>
-        </a>
-      </Navbar.Section>
-    </Navbar>
+        <Burger
+          opened={opened}
+          onClick={() => toggleOpened()}
+          className={classes.burger}
+          size="sm"
+        />
+
+        <Transition transition="pop-top-right" duration={200} mounted={opened}>
+          {(styles) => (
+            <Paper className={classes.dropdown} withBorder style={styles}>
+              {items}
+            </Paper>
+          )}
+        </Transition>
+      </Container>
+    </Header>
   );
 }
