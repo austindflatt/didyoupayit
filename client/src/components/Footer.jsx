@@ -53,7 +53,7 @@ export function Footer() {
           >
           Source Code
           </Anchor>
-		</Group>
+        </Group>
       </Container>
     </div>
   );

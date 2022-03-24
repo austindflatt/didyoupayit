@@ -9,6 +9,7 @@ import {
   List,
   ThemeIcon,
 } from '@mantine/core';
+import { Check } from 'tabler-icons-react';
 import image from './image.svg';
 import { Link } from 'react-router-dom';
 
@@ -78,8 +79,7 @@ export function Home() {
               An <span className={classes.highlight}>easy</span> way to track<br /> your payments
             </Title>
             <Text color="dimmed" mt="md">
-              Create lists for bills or anything that you need to pay, and check them off when they are paid.
-              You can even set up recurring payments to reset monthly/weekly and check them off once they are paid again.
+              Create lists for bills or anything that you need to pay, then check them off once they are paid.
             </Text>
 
             <List
@@ -88,10 +88,10 @@ export function Home() {
               size="sm"
               icon={
                 <ThemeIcon size={20} radius="xl">
-
+                  <Check size={12} />
                 </ThemeIcon>
               }
-            >
+              >
               <List.Item>
                 <b>FREE</b> – This is 100% free to use
               </List.Item>
@@ -127,7 +127,7 @@ export function Home() {
           </div>
           <Image src={image} className={classes.image} />
         </div>
-      </Container>
+        </Container>
     </div>
   );
 }

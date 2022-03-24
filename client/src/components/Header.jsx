@@ -7,7 +7,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 56,
+    height: 60,
 
     [theme.fn.smallerThan('sm')]: {
       justifyContent: 'flex-start',
@@ -73,7 +73,7 @@ export function HeaderMiddle() {
   return (
     <Header height={56} mb={120}>
       <Container className={classes.inner}>
-        <a href='/'><h1>Did you pay it?</h1></a>
+        <h1>Did you pay it?</h1>
       </Container>
     </Header>
   );
