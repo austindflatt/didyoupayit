@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import { Button, Group, Box, Paper, Title } from '@mantine/core';
 import { FormRow, AlertBox } from '../components/index'
+import { useAppContext } from '../context/appContext';
 
 const initialState = {
   name: '',
   email: '',
   password: '',
   isMember: true,
-  showAlert: false,
 }
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
+
+  const { isLoading, showAlert } = useAppContext()
 
   const toggleMember = () => {
     setValues({...values, isMember: !values.isMember})
@@ -30,9 +32,11 @@ const Register = () => {
 	<>
   <Box sx={{ maxWidth: 400 }} mx="auto">
     <Paper radius="md" p="xl" withBorder>
+
     <Title order={1} style={{ width: '100px', margin: 'auto', display: 'block' }}>DYPI</Title>
     <Title order={2}>{values.isMember ? 'Login' : 'Register'}</Title>
-    {values.showAlert && <><br /> <AlertBox /><br /></>}
+    {showAlert && <><br /> <AlertBox /><br /></>}
+
     <form onSubmit={handleSubmit}>
       {
         !values.isMember && (
@@ -61,6 +65,7 @@ const Register = () => {
         <Button type="submit">Submit</Button>
       </Group>
     </form>
+
     </Paper>
   </Box>
   </>
