@@ -57,13 +57,9 @@ const Register = () => {
         handleChange={handleChange}
       />
       <Group position="center" mt="lg">
+        <Button type="submit" onClick={toggleMember}>{values.isMember ? 'Not a member yet?' : 'Already a member?'}</Button>
         <Button type="submit">Submit</Button>
       </Group>
-      <p>
-        <Group position="center" mt="md">
-        <Button type="submit" onClick={toggleMember}>{values.isMember ? 'Not a member yet?' : 'Already a member?'}</Button>
-        </Group>
-      </p>
     </form>
     </Paper>
   </Box>
