@@ -5,7 +5,6 @@ const FormRow = ({type, name, value, handleChange,labelText}) => {
   return (
 	<>
 	<TextInput
-	required
 	type={type}
 	label={labelText || name}
 	name={name}

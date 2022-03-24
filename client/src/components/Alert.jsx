@@ -1,9 +1,15 @@
 import React from 'react'
+import { Alert } from '@mantine/core';
+import { AlertCircle } from 'tabler-icons-react';
 
-const Alert = () => {
+const AlertBox = () => {
   return (
-	<div>Alert</div>
+    <>
+    <Alert icon={<AlertCircle size={16} />} title="Bummer!" color="red">
+      Something terrible happened! You made a mistake and there is no going back, your data was lost forever!
+    </Alert>
+    </>
   )
 }
 
-export default Alert
+export default AlertBox

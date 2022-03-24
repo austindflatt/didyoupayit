@@ -55,11 +55,7 @@ const useStyles = createStyles((theme) => ({
 
   highlight: {
     position: 'relative',
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.fn.rgba(theme.colors[theme.primaryColor][6], 0.55)
-        : theme.colors[theme.primaryColor][0],
-    borderRadius: theme.radius.sm,
+    backgroundColor: '#92ff78',
     padding: '4px 12px',
   },
 }));
@@ -75,7 +71,7 @@ export function Landing() {
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
-              An <span className={classes.highlight}>easy</span> way to track<br /> your payments
+              Track the <span className={classes.highlight}>payments</span> you've made 💰<br />
             </Title>
             <Text color="dimmed" mt="md">
               Create lists for bills or anything that you need to pay, then check them off once they are paid.
@@ -89,17 +85,7 @@ export function Landing() {
               component={Link}
               to={'/register'}
               >
-                Get started
-              </Button>
-              <Button
-              variant="default" 
-              radius="xl" 
-              size="md" 
-              className={classes.control}
-              component={Link}
-              to={'/login'}
-              >
-                Already a user?
+                Login/Register
               </Button>
             </Group>
           </div>

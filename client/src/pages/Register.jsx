@@ -1,16 +1,21 @@
 import React, { useState } from 'react'
-import { Button, Group, Box, Paper } from '@mantine/core';
-import FormRow from '../components/FormRow';
+import { Button, Group, Box, Paper, Title } from '@mantine/core';
+import { FormRow, AlertBox } from '../components/index'
 
 const initialState = {
   name: '',
   email: '',
   password: '',
   isMember: true,
+  showAlert: false,
 }
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
+
+  const toggleMember = () => {
+    setValues({...values, isMember: !values.isMember})
+  }
 
   const handleChange = (e) => {
     console.log(e.target)
@@ -25,14 +30,20 @@ const Register = () => {
 	<>
   <Box sx={{ maxWidth: 400 }} mx="auto">
     <Paper radius="md" p="xl" withBorder>
-    <h1>Register an account</h1>
+    <Title order={1} style={{ width: '100px', margin: 'auto', display: 'block' }}>DYPI</Title>
+    <Title order={2}>{values.isMember ? 'Login' : 'Register'}</Title>
+    {values.showAlert && <><br /> <AlertBox /><br /></>}
     <form onSubmit={handleSubmit}>
-      <FormRow 
-        type='text' 
-        name='name'
-        value={values.name}
-        handleChange={handleChange}
-      />
+      {
+        !values.isMember && (
+          <FormRow 
+            type='text' 
+            name='name'
+            value={values.name}
+            handleChange={handleChange}
+          />
+        )
+      }
       <FormRow 
         type='email' 
         name='email'
@@ -45,9 +56,14 @@ const Register = () => {
         value={values.password}
         handleChange={handleChange}
       />
-      <Group position="right" mt="md">
-        <Button type="submit">Create account</Button>
+      <Group position="center" mt="lg">
+        <Button type="submit">Submit</Button>
       </Group>
+      <p>
+        <Group position="center" mt="md">
+        <Button type="submit" onClick={toggleMember}>{values.isMember ? 'Not a member yet?' : 'Already a member?'}</Button>
+        </Group>
+      </p>
     </form>
     </Paper>
   </Box>
