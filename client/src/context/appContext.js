@@ -13,7 +13,7 @@ const AppProvider = ({ children }) => {
  const [state, setState] = useState(initialState)
  
  return <AppContext.Provider value={{...state}}>
-  {children}
+   {children}
   </AppContext.Provider>
 }
 
