@@ -20,7 +20,7 @@ const Register = () => {
   }
 
   const handleChange = (e) => {
-    setValues({...values, [e.target.name]:e.target.value})
+    setValues({...values, [e.target.name]: e.target.value})
   }
 
   const handleSubmit = (e) => {
@@ -36,8 +36,7 @@ const Register = () => {
   return (
 	<>
   <Box sx={{ maxWidth: 400 }} mx="auto">
-    <Paper radius="md" p="xl" withBorder>
-
+    <Paper radius="md" p="xl" withBorder style={{ marginTop: '50%' }}>
     <Title order={1} style={{ width: '100px', margin: 'auto', display: 'block' }}>DYPI</Title>
     <Title order={2}>{values.isMember ? 'Login' : 'Register'}</Title>
     {showAlert && <><br /> <AlertBox /><br /></>}
